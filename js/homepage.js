@@ -6,8 +6,9 @@ import { handleAPIError, handleFetchCatchError, handleRecipeCard } from './commo
  */
 const NUM_RECIPES_TO_SHOW = 10;
 
-const recipeContainer = document.createElement('div');
+const recipeContainer = document.createDocumentFragment();
 for (let index = 0; index < NUM_RECIPES_TO_SHOW; index++) {
+    
     // By waiting for fetch() to finish we avoid appending to the page for each recipe
     await fetch(`${baseUrl}/random.php`)
     .then(handleAPIError)
@@ -16,4 +17,4 @@ for (let index = 0; index < NUM_RECIPES_TO_SHOW; index++) {
     })
     .catch(handleFetchCatchError);
 }
-document.querySelector('#recipe-cards').innerHTML = recipeContainer.innerHTML;
+document.querySelector('#recipe-cards').append(recipeContainer);
