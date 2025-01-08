@@ -1,0 +1,30 @@
+@media (min-width: 650px) {
+    #contact-info {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+            "header form"
+            "info form";
+        > header {
+            grid-area: header;
+        }
+        > address {
+            grid-area: info;
+        }
+        > section {
+            grid-area: form;
+        }
+    }
+}
+
+address {
+    font-size: 0.9rem;
+    text-indent: var(--marginMain);
+    margin-bottom: var(--marginMain);
+    padding-top: var(--marginSmall);
+    border-top: var(--marginTiny) solid var(--colourBgTertiary);
+    p:nth-of-type(2) {
+        margin-bottom: var(--marginSmall);
+    }
+}

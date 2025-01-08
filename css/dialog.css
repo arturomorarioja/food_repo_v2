@@ -1,0 +1,27 @@
+dialog {
+    margin: 6rem auto 0 auto;
+    border-color: var(--colourBgSecondary);
+    border-radius: var(--marginSmall);            
+    header {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        padding: 0;
+        .close {
+            cursor: pointer;
+        }
+    }
+    :not(header):not(section) {
+        padding: var(--marginSmall) var(--marginMain);
+    }
+    address > * {
+        padding: 0;
+        margin: 0;
+    }
+    #address {
+        margin: 0 var(--marginMain) !important;
+    }
+}
+dialog#msgAbout {
+    max-height: 80vh;
+}

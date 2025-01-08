@@ -1,0 +1,26 @@
+:root {
+    /* System fonts gathered from https://modernfontstacks.com */
+    --fontMain: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+    --fontSecondary: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+    --fontHeader: 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, casual, cursive;
+
+    /* Colour palette from https://coolors.co/palette/582f0e-7f4f24-936639-a68a64-b6ad90-c2c5aa-a4ac86-656d4a-414833-333d29 */
+    --colourMain: #414833;
+    --colourSecondary: #582F0E;
+    --colourBgMain: #FBFBFB; 
+
+    --colourError: red;
+    --colourBorder: lightgrey;
+    --colourFoodType: #656D4A;
+    --colourArea: #7F4F24;
+    --colourMargin: white;
+
+    --marginMain: 1rem;
+    --marginSmall: 0.5rem;
+    --marginTiny: 0.1rem;
+
+    --recipeThumbnailDimension: 100px;
+    --recipePictureWidth: 320px;
+    --recipePictureWidthBig: 480px;
+    --recipeColumnMaxWidth: 15rem;
+}

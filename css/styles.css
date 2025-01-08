@@ -1,0 +1,252 @@
+@import '_variables.css';
+@import 'contact.css';
+@import 'dialog.css';
+@import 'forms.css';
+@import 'recipe.css';
+
+* {
+    margin: 0;
+    padding: 0;    
+}
+
+body {
+    display: flex;
+    flex-flow: row wrap;
+    > * {
+        width: 100%;
+    }
+    font-family: var(--fontMain);
+    @media (min-width: 1024px) {
+        max-width: 80%;
+        margin: 0 auto;
+        dialog {
+            max-width: 60%;
+        }
+    }
+
+    header, footer {
+        font-family: var(--fontSecondary);
+    }
+    header {
+        h1 {
+            font-family: var(--fontHeader);
+        }
+        a {
+            color: var(--colourMain);
+        }
+    }
+    > header, dialog > header, > footer {
+        text-align: center;
+        padding: var(--marginSmall) var(--marginMain);
+    }
+    > header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: repeat(2, auto);
+        padding: 0;
+        border-bottom: thin solid var(--colourMain);
+        input#chkHamburgerMenu:not(:checked)+#nav {
+            display: none;
+        }
+        label[for="chkHamburgerMenu"] {
+            /* The svg is vertically centred */
+            display: flex;          
+            align-items: center;
+
+            padding: 0 var(--marginSmall);
+            background-color: var(--colourMain);
+        }
+    }
+    #nav {
+        grid-column: 1 / 3;
+        width: calc(100% - 1px);
+    }
+    nav {
+        padding: 0.5rem 0;
+        &#main {
+            background-color: var(--colourMain);
+            a, button {
+                color: var(--colourBgMain);
+                background-color: var(--colourMain);
+            }
+        }
+        &#utility {
+            border-top: thin solid var(--colourMain);
+        }
+        ul {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-around;
+            margin: 0;
+            li {
+                display: inline-block;
+                list-style-type: none;
+                text-align: center;
+                a, button {
+                    font-family: var(--fontSecondary);
+                    font-size: 1rem;
+                }                
+                button {
+                    border: none;
+                }
+                button:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    @media (min-width: 480px) {        
+        header > label[for="chkHamburgerMenu"] {
+            display: none;
+        }
+        header > input#chkHamburgerMenu:not(:checked)+#nav {
+            display: block;
+        }
+        #nav {
+            display: inline-flex !important;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            > nav {
+                flex: 1 0 70%;
+                &#utility {
+                    flex: 1 0 30%;
+                }
+            }
+        }
+        nav > ul {
+            flex-flow: row nowrap;
+            justify-content: space-around;
+            padding: 0 var(--marginMain);
+        }
+    }
+    main {
+    }
+    section {
+        margin: var(--marginMain);
+        header {
+            text-align: left;
+            color: var(--colourSecondary);
+            margin-bottom: 1rem;
+        }
+        > section {
+            margin: 0;
+        }
+    }
+    ul, ol {
+        margin-left: var(--marginMain);
+    }
+    iframe {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+    }
+    article {
+        margin-bottom: calc(var(--marginMain) * 2);
+    }
+    a {
+        text-decoration: none;
+    }
+    .standout {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .pill {
+        padding: var(--marginTiny) var(--marginMain);
+        border-radius: var(--marginSmall);
+        text-align: center;
+    }
+    .foodType {
+        color: var(--colourBgMain);
+        background-color: var(--colourFoodType);
+    }
+    .area {
+        color: var(--colourBgMain);
+        background-color: var(--colourArea);
+    }
+    img {
+        width: 100%;
+        max-width: var(--recipePictureWidth);
+        border-radius: var(--marginSmall);
+    }
+    #recipe-list > header {
+        padding: 0 var(--marginMain);
+    }
+    #recipe-cards {
+        display: grid;
+        /*
+            auto-fill: Grid fills the row, creating as many columns as it can
+            minmax: no column will be smaller than --recipeColumnMaxWidth
+                    or wider than one fraction (auto-fill ensures that fractions
+                    will be only wide enough to fit more columns)
+        */
+        grid-template-columns: repeat(auto-fill, minmax(var(--recipeColumnMaxWidth), 1fr));
+        grid-template-rows: repeat(2, auto);
+        gap: calc(var(--marginMain) * 2);
+        article {
+            display: grid;
+            grid-template-columns: var(--recipeThumbnailDimension) 1fr;
+            grid-template-rows: repeat(2, auto);
+            margin: 0;
+            
+            > header {
+                grid-column: 2 / 3;
+                grid-row: 1 / 2;
+                padding: 0 var(--marginMain);
+                line-height: 1.2rem;
+                a {
+                }
+            }
+            > a:has(img) {
+                grid-row: 1 / 3;
+                max-width: var(--recipeThumbnailDimension);
+                max-height: var(--recipeThumbnailDimension);
+            }
+            > div {
+                grid-column: 2 / 3;
+                grid-row: 2 / 3;
+                > * {
+                    margin: var(--marginTiny) var(--marginMain) 0 var(--marginMain);
+                    padding: 0 var(--marginMain);
+                    width: auto;
+                    font-size: 0.9rem;
+                }        
+            }
+        }
+    }
+    .error {
+    }
+    
+    footer {
+        display: flex;
+        flex-flow: row wrap;
+        color: var(--colourBgMain);
+        background-color: var(--colourMain);
+        > * {
+            width: 100%;
+        }
+        > #credits {
+            margin-top: var(--marginSmall);
+            font-size: 0.8rem;
+            a {
+                color: var(--colourBgMain);
+            }
+        }
+        @media (min-width: 600px) {
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            > p {
+                text-align: left;
+            }
+            > div {
+                margin-top: 0;
+                text-align: right;
+            }
+        }
+    }
+
+    a {
+    }
+}
+
+.hidden {
+    display: none;
+}

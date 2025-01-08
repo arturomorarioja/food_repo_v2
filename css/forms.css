@@ -1,0 +1,29 @@
+form {
+    border-top: var(--marginTiny) solid var(--colourBgTertiary);
+    > div:not(:has(input[type="submit"])) {
+        display: flex;
+        flex-flow: column wrap;
+        margin: var(--marginSmall) 0;
+        textarea {
+            height: calc(5 * var(--marginMain));
+        }
+    }
+    input[type="submit"] {
+        width: auto;
+        padding: var(--marginSmall) var(--marginMain);
+        border: var(--marginTiny) solid var(--colourBgSecondary);
+        border-radius: calc(2 * var(--marginMain));
+        font-family: var(--fontMain);
+        font-size: 1rem;
+        color: var(--colourBgMain);
+        background-color: var(--colourBgSecondary);
+        cursor: pointer;
+    }
+}
+
+@media (min-width: 550px) {
+    .wide-form {
+        max-width: clamp(550px, 80%, 700px);
+        margin: var(--marginMain) auto;
+    }
+}
