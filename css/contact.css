@@ -28,3 +28,15 @@ address {
         margin-bottom: var(--marginSmall);
     }
 }
+
+form button {
+    width: 50%;
+    padding: var(--marginSmall);
+    font-family: var(--fontSecondary);
+    font-size: 1rem;
+    color: var(--colourBgMain);
+    background-color: var(--colourMain);
+    border: none;
+    border-radius: var(--marginMain);
+    cursor: pointer;
+}

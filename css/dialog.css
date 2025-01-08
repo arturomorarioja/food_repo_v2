@@ -7,19 +7,29 @@ dialog {
         flex-flow: row nowrap;
         justify-content: space-between;
         padding: 0;
+        color: var(--colourMain);
         .close {
             cursor: pointer;
         }
     }
-    :not(header):not(section) {
+    :not(header):not(section):not(address):not(address > p) {
         padding: var(--marginSmall) var(--marginMain);
     }
-    address > * {
+    address, address > * {
         padding: 0;
         margin: 0;
     }
+    address {
+        margin-bottom: var(--marginMain);
+    }
     #address {
         margin: 0 var(--marginMain) !important;
+        header {
+            margin-bottom: 0;
+            h3 {
+                padding: 0;
+            }
+        }
     }
 }
 dialog#msgAbout {

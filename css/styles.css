@@ -35,7 +35,7 @@ body {
             color: var(--colourMain);
         }
     }
-    > header, dialog > header, > footer {
+    > header, > footer {
         text-align: center;
         padding: var(--marginSmall) var(--marginMain);
     }
@@ -110,6 +110,7 @@ body {
                 flex: 1 0 70%;
                 &#utility {
                     flex: 1 0 30%;
+                    border-right: thin solid var(--colourMain);
                 }
             }
         }
@@ -120,13 +121,24 @@ body {
         }
     }
     main {
+        > section {
+            margin-left: 0;
+            margin-right: 0;
+            > header {
+                padding: 0 0 var(--marginSmall) 0;
+                border-bottom: var(--marginSmall) solid var(--colourBorder);
+            }
+            > section {
+                margin: 0 var(--marginMain);
+            }
+        }
     }
     section {
         margin: var(--marginMain);
         header {
             text-align: left;
             color: var(--colourSecondary);
-            margin-bottom: 1rem;
+            margin-bottom: var(--marginMain);
         }
         > section {
             margin: 0;
@@ -166,9 +178,6 @@ body {
         width: 100%;
         max-width: var(--recipePictureWidth);
         border-radius: var(--marginSmall);
-    }
-    #recipe-list > header {
-        padding: 0 var(--marginMain);
     }
     #recipe-cards {
         display: grid;
@@ -213,6 +222,7 @@ body {
         }
     }
     .error {
+        color: var(--colourError);
     }
     
     footer {
@@ -233,10 +243,13 @@ body {
         @media (min-width: 600px) {
             flex-flow: row nowrap;
             justify-content: space-between;
-            > p {
+            > section {
+                margin: var(--marginSmall);
+            }
+            > #copyright {
                 text-align: left;
             }
-            > div {
+            > #credits {
                 margin-top: 0;
                 text-align: right;
             }
