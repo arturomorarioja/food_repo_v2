@@ -1,11 +1,17 @@
-import { baseUrl } from './env.js';
-import { handleAPIError, handleFetchCatchError, baseUserUrl, handleRecipeCard, loggedUserID } from './common.js';
+import { baseUrl, baseUserUrl } from './env.js';
+import { 
+    handleAPIError, handleFetchCatchError, 
+    handleRecipeCard, 
+    loggedUserID, tokenHeader
+} from './common.js';
 
 /**
  * Gets the favourite recipe ID for the current user from the user API,
  * then gets information for each favourited recipe from the Meal DB API
  */
-fetch(`${baseUserUrl}/users/${loggedUserID()}/favourites`)
+fetch(`${baseUserUrl}/users/${loggedUserID()}/favourites`, { 
+    headers: tokenHeader() 
+})
 .then(handleAPIError)
 .then(async data => {
     if (data.recipes.length === 0) {

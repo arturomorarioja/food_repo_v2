@@ -1,5 +1,9 @@
 import { baseUrl, baseUserUrl } from './env.js';
-import { handleAPIError, handleFetchCatchError, loadFavourites, isFavourite, loggedUserID } from './common.js';
+import { 
+    handleAPIError, handleFetchCatchError, 
+    loadFavourites, isFavourite, 
+    loggedUserID, tokenHeader
+} from './common.js';
 
 const NON_FAVOURITED = '&#9734;';
 const FAVOURITED = '&#9733';
@@ -81,14 +85,19 @@ const handleFavouriting = () => {
         e.preventDefault();
         
         const userID = sessionStorage.getItem('food_repo_user_id');
-        const params = new URLSearchParams();
         const method = this.innerHTML === '☆' ? 'POST' : 'DELETE';
-        params.append('recipe_id', recipeID);
-        
-        fetch(`${baseUserUrl}/users/${userID}/favourites`, {
-            method: method,
-            body: params
-        })
+        const params = new URLSearchParams({
+            'recipe_id': recipeID
+        });
+
+        fetch(
+            `${baseUserUrl}/users/${userID}/favourites`, 
+            {
+                method: method,
+                headers: tokenHeader(),
+                body: params
+            }
+        )
         .then(handleAPIError)
         .then(data => {
             console.log(data);

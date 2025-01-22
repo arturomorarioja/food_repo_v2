@@ -39,6 +39,7 @@ export const loggedUserID = () => {
  */
 export const logout = () => {
     sessionStorage.removeItem('food_repo_user_id');
+    sessionStorage.removeItem('food_repo_user_token');
     sessionStorage.removeItem('food_repo_favourites');
     window.location.href = 'index.html';
 }
@@ -63,20 +64,29 @@ export const handleRecipeCard = function(data) {
 
     // document.querySelector('section#recipe-cards').append(recipeCard);        
     return recipeCard;
-}
+};
+
+/**
+ * Returns an HTTP header that includes the authentication token
+ */
+export const tokenHeader = () => new Headers({
+    'X-Session-Token': sessionStorage.getItem('food_repo_user_token')
+});
 
 /**
  * Loads the IDs of favourite recipes in sessionStorage
  */
 export const loadFavourites = async (userID) => {
     // A promise is returned, so that it can be treated asynchronously by the caller
-    return fetch(`${baseUserUrl}/users/${userID}/favourites`)
-        .then(handleAPIError)
-        .then(data => {
-            sessionStorage.setItem('food_repo_favourites', JSON.stringify(data.recipes));
-        })
-        .catch(handleFetchCatchError);
-}
+    return fetch(`${baseUserUrl}/users/${userID}/favourites`, { 
+        headers: tokenHeader() 
+    })
+    .then(handleAPIError)
+    .then(data => {
+        sessionStorage.setItem('food_repo_favourites', JSON.stringify(data.recipes));
+    })
+    .catch(handleFetchCatchError);
+};
 
 /**
  * Returns true if the recipe whose ID it receives is among the user's favourites, false otherwise

@@ -72,6 +72,9 @@ body {
         }
         &#utility {
             border-top: thin solid var(--colourMain);
+            button {
+                background-color: var(--colourBgMain);
+            }
         }
         ul {
             display: flex;
