@@ -1,7 +1,4 @@
 #recipe-info {
-    > section {
-        margin: var(--marginMain) 0;
-    }
     header {
         > * {
             display: inline-block;
@@ -15,29 +12,35 @@
             cursor: pointer;
         }
     }
+    > .recipeContainer > section {
+        margin: var(--marginMain) 0;
+    }
     @media (min-width: 680px) {
-        display: grid;
-        grid-template-areas:
-        "header header"
-        "picture description"
-        "ingredients video";
-        grid-template-columns: repeat(2, auto);
-        grid-template-rows: repeat(3, auto);
-        gap: var(--marginMain);
-        > header {
-            grid-area: header;
-        }
-        > img {
-            grid-area: picture;
-        }
-        > p {
-            grid-area: description;
-        }
-        > section {
-            grid-area: ingredients;
-        }
-        > iframe {
-            grid-area: video;
+        > div {
+
+            display: grid;
+            grid-template-areas:
+                "header header"
+                "picture description"
+                "ingredients video";
+            grid-template-columns: repeat(2, auto);
+            grid-template-rows: repeat(3, auto);
+            gap: var(--marginMain);
+            > header {
+                grid-area: header;
+            }
+            > img {
+                grid-area: picture;
+            }
+            > p {
+                grid-area: description;
+            }
+            > section {
+                grid-area: ingredients;
+            }
+            > iframe {
+                grid-area: video;
+            }
         }
     }
 }

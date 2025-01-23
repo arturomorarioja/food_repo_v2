@@ -40,11 +40,14 @@ body {
         padding: var(--marginSmall) var(--marginMain);
     }
     > header {
+        position: sticky;
+        top: 0;
         display: grid;
         grid-template-columns: 1fr auto;
         grid-template-rows: repeat(2, auto);
         padding: 0;
         border-bottom: thin solid var(--colourMain);
+        background-color: var(--colourBgMain);
         input#chkHamburgerMenu:not(:checked)+#nav {
             display: none;
         }
@@ -128,10 +131,13 @@ body {
             margin-left: 0;
             margin-right: 0;
             > header {
-                padding: 0 0 var(--marginSmall) 0;
+                padding: 0 0 var(--marginSmall) var(--marginMain);
                 border-bottom: var(--marginSmall) solid var(--colourBorder);
             }
             > section {
+                margin: 0 var(--marginMain);
+            }
+            > *:not(header) {
                 margin: 0 var(--marginMain);
             }
         }

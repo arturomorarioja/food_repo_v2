@@ -9,6 +9,7 @@ const favouritesLink = document.querySelector('li:has(a[href="favourites.htm"])'
 if (userID == 0) {
     document.querySelector('li:has(a[href="login.htm"])').classList.remove('hidden');
     document.querySelector('li:has(a[href="signup.htm"])').classList.remove('hidden');
+
     // The login and signup pages do not have the favourites and logout links.
     // If there is no favourites link, there is no logout link either
     if (favouritesLink !== null) {
@@ -22,6 +23,11 @@ if (userID == 0) {
         favouritesLink.classList.remove('hidden');
         document.querySelector('li:has(#logout)').classList.remove('hidden');
     }
+}
+
+// If there is a favourites link, there is a logout link
+if (favouritesLink !== null) {
+    document.querySelector('#logout').addEventListener('click', () => logout());
 }
 
 /**
@@ -56,9 +62,5 @@ document.querySelector('nav #about').addEventListener('click', () => {
     document.body.append(dialog);
     dialog.showModal();
 });
-
-if (favouritesLink !== null) {
-    document.querySelector('#logout').addEventListener('click', () => logout());
-}
 
 export const handleCloseDialogButton = function() { this.parentElement.parentElement.close(); }

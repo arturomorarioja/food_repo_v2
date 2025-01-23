@@ -5,7 +5,8 @@ document.querySelector('#frmContact').addEventListener('submit', (e) => {
 
     document.querySelector('#msgInfoSent').showModal();
 
-    // Of course, the form information is not sent anywhere
+    // Of course, as this is a sample repository for a nonexisting company,
+    // the form information is not sent anywhere
 
     e.target.reset();
 });

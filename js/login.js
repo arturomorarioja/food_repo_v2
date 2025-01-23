@@ -7,7 +7,7 @@ document.querySelector('#frmLogin').addEventListener('submit', (e) => {
     const email = e.target.txtEmail.value.trim();
     const password = e.target.txtPassword.value.trim();
 
-    const params = new URLSearchParams();
+    const params = new FormData();
     params.append('email', email);
     params.append('password', password);
 

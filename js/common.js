@@ -10,7 +10,7 @@ export const handleFetchCatchError = (error) => {
         <header>    
             <h3>Error</h3>
         </header>
-        <p>Dear user, we are truly sorry to inform that there was an error while getting the data</p>
+        <p>Dear user, we are truly sorry to inform that there was an error while retrieving the data</p>
         <p class="error">${error}</p>
     `;
     document.querySelector('main').append(errorSection);
@@ -38,14 +38,18 @@ export const loggedUserID = () => {
  * Logs out
  */
 export const logout = () => {
+    
+    // Current user information is removed from sessionStorage
     sessionStorage.removeItem('food_repo_user_id');
     sessionStorage.removeItem('food_repo_user_token');
     sessionStorage.removeItem('food_repo_favourites');
+
+    // The user is relocated to the homepage
     window.location.href = 'index.html';
 }
 
 /**
- * Creates and displays a recipe card
+ * Creates and returns a recipe card
  */
 export const handleRecipeCard = function(data) {
     const recipe = data.meals[0];
@@ -55,14 +59,15 @@ export const handleRecipeCard = function(data) {
         <header>
             <h3><a href="recipe.htm?id=${recipe.idMeal}">${recipe.strMeal}</a></h3>
         </header>
-        <a href="recipe.htm?id=${recipe.idMeal}"><img src="${recipe.strMealThumb}" alt=""></a>
+        <a href="recipe.htm?id=${recipe.idMeal}">
+            <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}">
+        </a>
         <div>
             <p class="pill foodType">${recipe.strCategory}</p>
             <p class="pill area">${recipe.strArea}</p>
         </div>
     `;
 
-    // document.querySelector('section#recipe-cards').append(recipeCard);        
     return recipeCard;
 };
 
@@ -77,6 +82,7 @@ export const tokenHeader = () => new Headers({
  * Loads the IDs of favourite recipes in sessionStorage
  */
 export const loadFavourites = async (userID) => {
+    
     // A promise is returned, so that it can be treated asynchronously by the caller
     return fetch(`${baseUserUrl}/users/${userID}/favourites`, { 
         headers: tokenHeader() 

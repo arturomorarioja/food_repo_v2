@@ -21,7 +21,7 @@ fetch(`${baseUserUrl}/users/${loggedUserID()}/favourites`, {
     } else {
         // data.recipes.forEach() does not handle asynchronous operations sequentially,
         // but a traditional for() does
-        const recipeContainer = document.createElement('div');
+        const recipeContainer = document.createDocumentFragment();
         for (let index = 0; index < data.recipes.length; index++) {
             // By waiting for fetch() to finish we avoid appending to the page for each recipe
             await fetch(`${baseUrl}/lookup.php?i=${data.recipes[index].recipe_id}`)
@@ -31,7 +31,7 @@ fetch(`${baseUserUrl}/users/${loggedUserID()}/favourites`, {
             })
             .catch(handleFetchCatchError);
         }
-        document.querySelector('#recipe-cards').innerHTML = recipeContainer.innerHTML;
+        document.querySelector('#recipe-cards').append(recipeContainer);
     }
 })
 .catch(handleFetchCatchError);
