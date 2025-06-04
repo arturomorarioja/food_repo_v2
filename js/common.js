@@ -31,7 +31,7 @@ export const handleAPIError = (response) => {
  * Returns the logged used ID or 0 if no user is logged in
  */
 export const loggedUserID = () => {
-    return sessionStorage.getItem('food_repo_user_id') || 0;
+    return localStorage.getItem('food_repo_user_id') || 0;
 }
 
 /**
@@ -39,10 +39,10 @@ export const loggedUserID = () => {
  */
 export const logout = () => {
     
-    // Current user information is removed from sessionStorage
-    sessionStorage.removeItem('food_repo_user_id');
-    sessionStorage.removeItem('food_repo_user_token');
-    sessionStorage.removeItem('food_repo_favourites');
+    // Current user information is removed from localStorage
+    localStorage.removeItem('food_repo_user_id');
+    localStorage.removeItem('food_repo_user_token');
+    localStorage.removeItem('food_repo_favourites');
 
     // The user is relocated to the homepage
     window.location.href = 'index.html';
@@ -75,11 +75,11 @@ export const handleRecipeCard = function(data) {
  * Returns an HTTP header that includes the authentication token
  */
 export const tokenHeader = () => new Headers({
-    'X-Session-Token': sessionStorage.getItem('food_repo_user_token')
+    'X-Session-Token': localStorage.getItem('food_repo_user_token')
 });
 
 /**
- * Loads the IDs of favourite recipes in sessionStorage
+ * Loads the IDs of favourite recipes in localStorage
  */
 export const loadFavourites = async (userID) => {
     
@@ -89,7 +89,7 @@ export const loadFavourites = async (userID) => {
     })
     .then(handleAPIError)
     .then(data => {
-        sessionStorage.setItem('food_repo_favourites', JSON.stringify(data.recipes));
+        localStorage.setItem('food_repo_favourites', JSON.stringify(data.recipes));
     })
     .catch(handleFetchCatchError);
 };
@@ -98,6 +98,6 @@ export const loadFavourites = async (userID) => {
  * Returns true if the recipe whose ID it receives is among the user's favourites, false otherwise
  */
 export const isFavourite = (recipeID) => {
-    const favourites = JSON.parse(sessionStorage.getItem('food_repo_favourites'));
+    const favourites = JSON.parse(localStorage.getItem('food_repo_favourites'));
     return favourites.find((recipe) => recipe.recipe_id === parseInt(recipeID)) !== undefined;
 }

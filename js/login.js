@@ -19,8 +19,8 @@ document.querySelector('#frmLogin').addEventListener('submit', (e) => {
     .then(data => {
         // Check for key "user_id" in response
         if (Object.keys(data).includes('user_id')) {
-            sessionStorage.setItem('food_repo_user_id', data.user_id);
-            sessionStorage.setItem('food_repo_user_token', data.token);
+            localStorage.setItem('food_repo_user_id', data.user_id);
+            localStorage.setItem('food_repo_user_token', data.token);
 
             // As loadFavourites returns a promise, it can be treated asynchronously, 
             // making the page redirection wait until loadFavourites is finished

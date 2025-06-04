@@ -83,7 +83,7 @@ const handleFavouriting = () => {
     document.querySelector('.favourite').addEventListener('click', function(e) {
         e.preventDefault();
         
-        const userID = sessionStorage.getItem('food_repo_user_id');
+        const userID = localStorage.getItem('food_repo_user_id');
         const method = this.innerHTML === '☆' ? 'POST' : 'DELETE';
         const params = new URLSearchParams({
             'recipe_id': recipeID
